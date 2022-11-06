@@ -1,0 +1,619 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+
+<style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+thead, tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+svg { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; padding-bottom: 0px !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.reversefootnote { font-family: ui-monospace, sans-serif; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+
+
+
+/*!
+Misty Light
+Brought to you with ❤️ by E-Tiger Studio, 2017-2020
+https://github.com/etigerstudio/typora-misty-theme
+ */
+:root {
+  --control-text-color: #777;
+  --side-bar-bg-color: #f6f8fa
+}
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: subpixel-antialiased
+}
+body {
+  font-family: "SF UI Text",-apple-system,-apple-system-body,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  color: #24292e;
+  line-height: 1.5
+}
+#write {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 20px 30px 100px
+}
+#write > ol:first-child,
+#write > ul:first-child {
+  margin-top: 30px
+}
+body > :first-child {
+  margin-top: 0!important
+}
+body > :last-child {
+  margin-bottom: 0!important
+}
+a {
+  color: #4183c4
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  position: relative;
+  margin-top: 1.8rem;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+  cursor: text;
+  color: #142331
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+  text-decoration: none
+}
+h1 code,
+h1 tt,
+h2 code,
+h2 tt,
+h3 code,
+h3 tt,
+h4 code,
+h4 tt,
+h5 code,
+h5 tt,
+h6 code,
+h6 tt {
+  font-size: inherit
+}
+h1 {
+  text-align: center;
+  padding-bottom: .3em;
+  font-size: 2.25em;
+  line-height: 1.2;
+  margin: 1em auto 1.2em
+}
+h1:after {
+  border-bottom: 2px dashed #afec9e;
+  content: '';
+  width: 100px;
+  display: block;
+  margin: .2em auto 0;
+  height: 2px
+}
+h2 {
+  font-size: 1.75em;
+  padding-left: 9px;
+  line-height: 1.4;
+  border-left: 6px solid #cce5ff
+}
+h3 {
+  font-size: 1.5em;
+  line-height: 1.43
+}
+h3:before {
+  border-radius: 50%;
+  background-color: #9ed0ff;
+  content: '';
+  width: 6px;
+  display: inline-block;
+  height: 6px;
+  vertical-align: middle;
+  margin-bottom: .18em;
+  margin-right: 8px
+}
+#write > h3.md-focus:before,
+#write > h4.md-focus:before {
+  background-color: transparent;
+  width: auto;
+  height: auto
+}
+h4 {
+  font-size: 1.25em
+}
+h4:before {
+  background-color: #9ed0ff;
+  content: '';
+  width: 6px;
+  display: inline-block;
+  height: 2px;
+  vertical-align: middle;
+  margin-bottom: .18em;
+  margin-right: 8px
+}
+h5 {
+  font-size: 1em
+}
+h6 {
+  font-size: 1em;
+  color: #777
+}
+blockquote,
+dl,
+ol,
+p,
+table,
+ul {
+  margin: .8em 0
+}
+li > ol,
+li > ul {
+  margin: 0
+}
+hr {
+  height: .25em;
+  padding: 0;
+  margin: 24px 0;
+  background-color: #e1e4e8;
+  border: 0
+}
+a:first-child h1,
+a:first-child h2,
+a:first-child h3,
+a:first-child h4,
+a:first-child h5,
+a:first-child h6,
+body>h1:first-child,
+body>h1:first-child+h2,
+body>h2:first-child,
+body>h3:first-child,
+body>h4:first-child,
+body>h5:first-child,
+body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0
+}
+h1 p,
+h2 p,
+h3 p,
+h4 p,
+h5 p,
+h6 p {
+  margin-top: 0
+}
+li p.first {
+  display: inline-block
+}
+ol,
+ul {
+  padding-left: 30px
+}
+ol:first-child,
+ul:first-child {
+  margin-top: 0
+}
+ol:last-child,
+ul:last-child {
+  margin-bottom: 0
+}
+blockquote {
+  border-left: 4px dotted #e5e8e8;
+  padding: 0 12px;
+  color: #444;
+  font-size: .9em
+}
+blockquote blockquote {
+  padding-right: 0
+}
+table {
+  padding: 0;
+  word-break: initial
+}
+table tr {
+  border-top: 1px solid #dadfe6;
+  margin: 0;
+  padding: 0
+}
+table.md-table tr:nth-child(2n) {
+  background-color: #fafbfc
+}
+table tr td,
+table tr th {
+  border: 1px solid #dadfe6;
+  text-align: left;
+  margin: 0;
+  padding: 6px 13px
+}
+table tr td:first-child,
+table tr th:first-child {
+  margin-top: 0
+}
+table tr td:last-child,
+table tr th:last-child {
+  margin-bottom: 0
+}
+.CodeMirror-gutters {
+  border-right: 1px solid #ddd
+}
+.md-fences,
+code,
+tt {
+  font-size: 90%;
+  border-radius: 3px;
+  font-family: "SF Mono",Consolas,"Liberation Mono",Menlo,Courier,monospace
+}
+code,
+tt {
+  margin: 0 2px;
+  padding: 2px 4px;
+  background-color: #e2f0ff
+}
+.md-fences {
+  background-color: #f6f8fa;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  padding: 12px 1em
+}
+.md-task-list-item > input {
+  margin-left: -1.45em;
+  margin-top: calc(1em - 10px)
+}
+#write pre.md-meta-block {
+  padding: 1rem;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f7faf6;
+  border: 0;
+  border-radius: 3px;
+  color: #777;
+  margin-top: 0!important
+}
+.mathjax-block > .code-tooltip {
+  bottom: .375rem
+}
+#write > h3.md-focus:before {
+  left: -1.5625rem;
+  top: .375rem
+}
+#write>h4.md-focus:before,
+#write>h5.md-focus:before,
+#write>h6.md-focus:before {
+  left: -1.5625rem;
+  top: .285714286rem
+}
+.md-image > .md-meta {
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  font-family: "SF Mono",Consolas,"Liberation Mono",Courier,monospace;
+  padding: 2px 4px 0;
+  font-size: .9em;
+  color: inherit
+}
+.md-tag {
+  color: inherit
+}
+.md-toc {
+  margin-top: 20px;
+  padding-bottom: 20px
+}
+.sidebar-tabs {
+  border-bottom: none
+}
+#typora-quick-open {
+  border: 1px solid #ddd;
+  background-color: #f8f8f8
+}
+#typora-quick-open-item {
+  background-color: #fafafa;
+  border-color: #fefefe #e5e5e5 #e5e5e5 #eee;
+  border-style: solid;
+  border-width: 1px
+}
+.typora-quick-open-item {
+  padding-top: 3px
+}
+.typora-quick-open-list {
+  margin-top: 4px
+}
+.typora-quick-open-item-path {
+  margin-top: -2px
+}
+#md-notification:before {
+  top: 10px
+}
+.on-focus-mode blockquote {
+  border-left-color: rgba(85,85,85,.12)
+}
+.context-menu,
+.megamenu-content,
+footer,
+header {
+  font-family: "SF UI Text",-apple-system,-apple-system-body,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"
+}
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state {
+  visibility: visible
+}
+.mac-seamless-mode #typora-sidebar {
+  background-color: var(--side-bar-bg-color)
+}
+.md-lang {
+  color: #b4654d
+}
+.pin-outline #outline-content .outline-active strong,
+.pin-outline .outline-active {
+  color: #232323;
+  font-weight: 600
+}
+.outline-label {
+  color: #646464;
+  font-weight: 400
+}
+.file-list-item-summary {
+  font-family: "SF UI Text",-apple-system,-apple-system-body,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"
+}
+@media print {
+  body {
+    font-weight: 400
+  }
+  b,
+  strong {
+    font-weight: 600
+  }
+  pre,
+  table {
+    page-break-inside: avoid
+  }
+  pre {
+    word-wrap: break-word
+  }
+}
+body {
+  font-weight: 400;
+  -webkit-font-smoothing: unset
+}
+b,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong {
+  font-weight: 600
+}
+h1,
+table tr th {
+  font-weight: 400
+}
+.file-list-item-file-name {
+  font-weight: 500
+}
+
+mark{
+    background: #ffffc4;
+}
+
+
+</style><title>讲道笔记221106</title>
+</head>
+<body class='typora-export os-windows'><div class='typora-export-content'>
+<div id='write'  class=''><h1 id='讲道笔记221106'><span>讲道笔记221106</span></h1><h2 id='主日证道用脸光照我们的福音'><span>主日证道：用脸光照我们的福音</span></h2><h3 id='前言'><span>前言</span></h3><p><em><span>诗篇六十七篇</span></em></p><p><strong><span>1</span></strong><span>愿神</span><mark><span>怜悯</span></mark><span>我们，</span><mark><span>赐福</span></mark><span>与我们，</span><mark><span>用脸光照我们</span></mark><span>， </span>
+<strong><span>2</span></strong><span>好叫世界得知你的道路，万国得知你的</span><mark><span>救恩</span></mark><span>。</span>
+<strong><span>3</span></strong><span>神啊，愿列邦称赞你！愿万民都称赞你！</span></p><p><strong><span>4</span></strong><span>愿万国都快乐欢呼；因为你必按公正审判万民，引导世上的万国。 </span>
+<strong><span>5</span></strong><span>神啊，愿列邦称赞你！愿万民都称赞你！</span></p><p><strong><span>6</span></strong><span>地已经</span><mark><span>出了土产</span></mark><span>；神－就是我们的神要赐福与我们。</span>
+<strong><span>7</span></strong><span>神要赐福与我们；地的四极都要敬畏他！</span></p><p><span>一首称颂的歌，向神献上敬拜，表明了弹唱的过程</span></p><p><span>欢呼--持续性的欢呼，不仅只是在长满五谷的时候、收获的时候欢呼</span></p><blockquote><p><span>虽然无花果树不发旺，葡萄树不结果，橄榄树也不效力，田地不出粮食，圈中绝了羊，棚内也没有牛；然而，我要因耶和华欢欣，因救我的神喜乐。</span>
+<span>(哈巴谷书 3:17-18 和合本)</span></p></blockquote><p><span>这样的时候也应当欢呼赞美（疫情封控，充满矛盾...）</span></p><p><span>不管光景如何，因为今天是复活的主日，就是应当欢喜赞美的时候</span></p><p>&nbsp;</p><h3 id='一掩面不顾我们的神'><span>一、掩面不顾我们的神</span></h3><h4 id='11神的全在与全知'><span>1.1神的全在与全知</span></h4><blockquote><p><strong><span>1</span></strong><span>愿神</span><mark><span>怜悯</span></mark><span>我们，</span><mark><span>赐福</span></mark><span>与我们，</span><mark><span>用脸光照我们</span></mark><span>， </span></p></blockquote><p><span>神给我们是怜悯、赐福、恩典的福音</span></p><p><span>如何怜悯、赐福：用祂的脸光照我们</span></p><ul><li><span>比喻的说法，神是灵，没有物质的脸</span></li><li><span>圣经常提到神的脸和面：神无所不在，无所不知，祂的全在和知识，万物都在神的面前，所有的一切都在神的掌握、在神的监察之下 （最普遍的认识，没有基督教背景也能理解）</span></li></ul><p><span> </span></p><h4 id='12神对罪恶的审判'><span>1.2神对罪恶的审判</span></h4><ul><li><p><span>旧约当中神的面的重要意义：</span></p><p><span>代表神无所不在、无所不知而带出来的祂对于亚当极其后裔所有罪恶的愤怒和诅咒</span></p></li></ul><blockquote><p><mark><span>你将我们的罪孽摆在你面前，</span>
+<span>将我们的隐恶摆在你面光之中</span></mark><span>。</span></p><p><span>我们经过的日子都在你震怒之下；</span>
+<span>我们度尽的年岁好像一声叹息。</span>
+<mark><span>我们一生的年日是七十岁，</span>
+<span>若是强壮可到八十岁</span></mark><span>；</span>
+<span>但其中所矜夸的不过是劳苦愁烦，</span>
+<span>转眼成空，我们便如飞而去。</span></p><p><span>(诗篇 90:8-10 和合本)</span></p></blockquote><ul><li><span>不只是对于人生苦短的感悟：无所不知的知识和能力因着神圣洁的属性变成了祂对我们罪的审判，对于罪人来说，审判者无所不知是很恐怖的，带来对人的定罪。</span></li><li><span>对身在亚当旧时代的人：你的整个人生，你的所有罪恶，都在上帝的面光之下（小时候，长大，隐藏，忘记了的，都是在众目睽睽之下的犯罪，在神面光之下的犯罪）</span></li></ul><p><strong><span>神的面</span></strong>➡️<strong><span>神的愤怒</span></strong><span> </span></p><ul><li><p><span>相信神的愤怒从天上降下临到不虔不义的人</span></p></li><li><p><span>相信原罪的教义</span></p></li><li><p><span>相信疫情严重，土地苦难深重，有医学、道德、政治、措施等原因，根本：上帝怒气的审判</span></p><ul><li><span>幸免于难后继续犯罪、淫乱、拜偶像</span></li><li><span>不知道上帝的宽容和忍耐是为了叫我们悔改</span></li><li><span>“将神的荣耀归给偶像，归给假神” 神的愤怒在你们身上已经达到极致 （亚当违背命令之后一直存在）</span></li></ul></li></ul><p><span>所以摩西的这首诗篇说，因着我们的罪被摆在你面前的缘故，我们的日子都在你的震怒之下，都是叹息</span></p><p>&nbsp;</p><h4 id='13与神隔绝的选民'><span>1.3与神隔绝的选民</span></h4><p><span>对于神的百姓而言，旧约圣经所表达的：</span></p><ul><li><p><span>神的面是神的愤怒，临到我们</span></p><p><span>我们选民的身份：创世以前就已经被确立，但从堕落的历史来讲，我们一直身处罪中；“我们本是可怒之子”，所以上帝的愤怒也公平地临在我们身上，我们也一样承受</span></p></li><li><p><span>罪不仅带来神的怒气，也带来我们与神的</span><strong><span>隔绝</span></strong></p><ul><li><p><span>不是神不在、没有神，祂是无所不在的（139篇），而是我们与神的恩典、慈爱、怜悯隔绝 （你们不能见神的面</span></p></li><li><p><span>可以经历到神的临在，是</span><mark><span>愤怒的临在</span></mark><span>而不是恩典的临在</span></p><ul><li><span>出埃及早期：雷声、密云、闪电 （表示隔绝，百姓不能靠近）</span></li><li><span>出埃及后期：圣殿里隔开圣所和至圣所的幔子 （</span><em><span>和神之间的通路被阻断了，是选民却一样有隔绝，是儿子却无法真正回家，是子民却无法来到君王的面前，是妻子却活得像寡妇一样</span></em><span>）</span></li><li><span>以赛亚解释了原因，神把祂的恩典、宠爱与罪人隔绝</span></li></ul><blockquote><p><span>耶和华的膀臂并非缩短，不能拯救，耳朵并非发沉，不能听见，</span>
+<span>但</span><mark><span>你们的罪孽使你们与神隔绝；你们的罪恶使他掩面不听你们</span></mark><span>。</span>
+<span>(以赛亚书 59:1-2 和合本) </span></p></blockquote></li><li><p><span>最近的环境：封控、隔离，与家人隔绝；旧约：大麻风病人等</span></p><ul><li><span>我们人生最可怕的隔绝：你与神的面隔绝，与神的恩典隔绝，与神的宠爱隔绝</span></li><li><span>最终极的隔绝：地狱永远的愤怒和咒诅 （你们从此不得再见我的面，在隔绝的状态中永远领受神的愤怒）</span></li></ul></li></ul></li></ul><hr /><h3 id='二仰脸光照我们的神'><span>二、仰脸光照我们的神</span></h3><p><span>重新看到诗篇的第一节：</span></p><p><strong><span>1</span></strong><span>愿神</span><mark><span>怜悯</span></mark><span>我们，</span><mark><span>赐福</span></mark><span>与我们，</span><mark><span>用脸光照我们</span></mark></p><p><span>这是何等大的事情</span></p><p>&nbsp;</p><h4 id='21在基督里光照我们的神'><span>2.1在基督里光照我们的神</span></h4><p><span>诗人不是祈求普通的怜悯与福气，而是求神用脸光照——通过旧约那道厚厚的幔子来到神施恩的宝座前</span></p><p><span>然而这是不可能的：</span></p><ul><li><p><span>这隔绝是神亲自命定和设立的，代表了神的公义、愤怒</span></p><ul><li><p><span>可以明白为什么第一节的光照就是等同于下文的“道路”与“救恩”</span></p><p><strong><span>1</span></strong><span>愿神</span><mark><span>怜悯</span></mark><span>我们，</span><mark><span>赐福</span></mark><span>与我们，</span><mark><span>用脸光照我们</span></mark></p><p><strong><span>2</span></strong><span>好叫世界得知你的</span><mark><span>道路</span></mark><span>，万国得知你的</span><mark><span>救恩</span></mark><span>。</span></p></li></ul></li><li><p><span>神的百姓要与神和好，除非神亲自开一条路，除非神亲自向悖逆祂的百姓伸出救恩的手</span></p><ul><li><strong><span>脸光、道路、救恩</span></strong>➡️<strong><span>唯独基督</span></strong></li><li><span>除了基督以外，我们没有任何的救赎、道路；除了基督以外，我们也不能看见神用脸光照我们的面</span></li></ul><blockquote><p><span>多马对他说：“主啊，我们不知道你往哪里去，怎么知道那条路呢？”耶稣说：“</span><strong><span>我就是道路、真理、生命；若不藉着我，没有人能到父那里去</span></strong><span>。</span>
+<span>(约翰福音 14:5-6 和合本)</span></p><p><span>腓力对他说：“求主将父显给我们看，我们就知足了。”耶稣对他说：“腓力...</span><strong><span>人看见了我，就是看见了父</span></strong><span>；</span>
+<span>(约翰福音 14:8-9 和合本)</span></p></blockquote><ul><li><p><span>启示完全打开：脸光、脸面，就是道路；道路就是救恩；这启示在统一性上就是“唯独基督”</span></p><ul><li><span>只有在祂儿子里面，神才能用脸光照我们</span></li><li><span>只有在祂儿子里面，神的百姓才能够看见神的面</span></li><li><span>耶稣就是道路，耶稣就是那门，耶稣就是那救恩</span></li></ul></li></ul><p><span>      </span></p></li><li><p><span>仍未解决的罪的问题</span></p><ul><li><span>旧约当中，大祭司虽然能够穿过幔子来到神面前，罪的问题没解决，对百姓的审判就没有改变；大祭司在赎罪日可以来到神面前，但要带着羔羊的血，血代表审判和死亡</span></li></ul></li></ul><hr /><p><strong><span>4</span></strong><span>愿万国都快乐欢呼；因为你必按公正审判万民，引导世上的万国。 </span></p><ul><li><p><span>为什么当救恩传给万民的时候都要因神的审判而欢呼呢？</span></p><p><span>对神的百姓而言，为了能够得到神的脸光照，那位从来没有从神的脸、从父的面前被隔绝过的基督必须为我们的缘故受隔绝</span></p></li></ul><p>&nbsp;</p><h4 id='22掩面不顾儿子的神'><span>2.2掩面不顾儿子的神</span></h4><p><span>欢呼--审判已经发生过了，不是发生在神众儿女身上，而是发生在神那个儿子身上</span></p><blockquote><p><span>耶和华啊，你为何丢弃我？</span>
+<span>为何掩面不顾我？</span>
+<span>(诗篇 88:14 和合本)</span></p></blockquote><ul><li><p><span>这不仅是诗人的祷告，从终极意义上来说，这是基督在十字架上的祷告</span></p><ul><li><p><span>那位真正被神掩面不顾、被神丢弃、被神收去祂所有面光光照的，是基督</span></p></li><li><p><span>这是在永恒当中从来未曾发生过的事情</span></p><p><span>并非在钉十字架的一开始就发生，开始的时候耶稣仍能说，“父啊，赦免他们”，十字架咒诅的惨烈是逐步发生的三个小时后天地昏暗，永恒当中从来未曾向祂掩面的父此刻向祂掩面，为什么？</span></p><p><span>——祂要担当我们所有的罪（小时后，长大，已经忘记了的，在暗中，在明处）全部压在祂身上；而那位要向罪来审判、向罪掩面的神，此刻要向基督来掩面</span></p><p><span>于是耶稣大喊说，“我的神，我的神，你为何离弃我”</span></p></li></ul></li><li><p><span>诗篇88篇（为何、为何）的答案，就在67篇的第一节（2、4节寓言真实发生）</span></p><ul><li><span>神的办法就是让那位审判者为我们受审判（John5:22），让不曾被神掩面隔绝恩典的那一位为我们被隔绝，让祂的儿子在十字架上成为赎罪祭</span></li><li><span>狄可托马斯的例子，在教会里宣读大祭司祝福的话：</span></li></ul><blockquote><p><span>愿耶和华赐福给你，保护你。愿耶和华使他的脸光照你，赐恩给你。愿耶和华向你仰脸，赐你平安。’</span>
+<span>(民数记 6:24-26 和合本)</span></p></blockquote><p><span>      他询问会众：请问耶和华如何赐这些福气给你呢？</span></p><p><span>      ——办法是，神定意对祂的独生儿子说，“耶和华咒诅你，伤害你。耶和华使祂的脸怒视你，定你有罪。耶和华转脸不看你，把地狱的火加在你身上。</span></p></li><li><p><span>借着福音完成的工作和圣灵在我们里面生发的信心，这个赎罪祭发生功效的荣耀——神又能够重新与我们和好</span></p><ul><li><p><span>罗马书第三章：罪祭；第四章：因信称义的道理：第五章：1节 “借着我们的主耶稣基督与神相和”</span></p><p><span>主在十字架上所成的，隔绝圣所与至圣所一千五百年的幔子裂开了</span></p></li></ul></li></ul><blockquote><p><span>弟兄们，我们既因耶稣的血得以坦然进入至圣所，是藉着他给我们开了</span><mark><span>一条又新又活的路</span></mark><span>，从幔子经过，这幔子就是他的身体。 (希伯来书 10:19-20 和合本)</span></p><p><span>那吩咐光从黑暗里照出来的神，已经照在我们心里，叫我们得知</span><mark><span>神荣耀的光显在耶稣基督的面上</span></mark><span>。</span>
+<span>(哥林多后书 4:6 和合本)</span></p></blockquote><p>&nbsp;</p><ul><li><p><span>当福音从犹大传出来的时候，它传遍万国和万邦</span></p><p><span>结果：</span><strong><span>6</span></strong><span>地已经</span><mark><span>出了土产</span></mark><span>；神——就是我们的神要赐福与我们。</span></p></li></ul><p>&nbsp;</p><h4 id='23在恩典之下结果累累'><span>2.3在恩典之下结果累累</span></h4><p><span>丰收庆典的诗歌</span></p><ul><li><p><span>为什么地会出土产？——1节，神用脸光照我们的结果，神果然垂听祂百姓的祷告</span></p><p><span>对应创3:18  （地会出五谷是神迹，对于亚当夏娃的咒诅；正如天降吗哪一样是不正常的）</span></p></li><li><p><mark><span>恩典确实已经扭转了咒诅</span></mark><span>：如何扭转？</span></p><ul><li><p><span>恩典之光的照耀</span></p></li><li><p><span>一粒麦子的死：</span><strong><span>一粒麦子</span></strong><span>落在地里死了，如今结出许多的籽粒来</span></p></li><li><p><span>在我们的生命中已经发生过一个神迹、改变，是恩典之光已经照耀的结果，今天即便没有看到五谷丰登，生命当中存在许多艰难，也应该看到：</span></p><ul><li><strong><span>7</span></strong><span>神要</span><strong><span>赐福</span></strong><span>与我们；地的四极都要敬畏他！ </span></li><li><span>神向着我们是赐平安的意念，而不是降灾祸的意念</span></li><li><span>神在福音中间给我们最大的赐福就是</span><mark><span>称义、与神和好</span></mark></li></ul></li></ul></li></ul><p><span>今天是我们应当称颂的时候！</span></p><p><span>今天就是地长五谷的时候，是一个神迹，不是靠着自然，不是靠着血肉，而是靠着神的恩典在基督里发生的，神的恩典本身就是我们的福气！</span></p><p><span>可以确定地说：神要赐福给我们！</span></p><p><span>司布真——“主啊，你常做我灵魂的阳光，好让我的生命结果累累”</span></p><p><span>既然幔子已经裂开，神的恩典已经显明，神已经应许要用脸光照我们，如今我们就可以到至圣所去，向神呼求：“主啊，你常做我灵魂的阳光，好让我的生命结果累累”</span></p><p>&nbsp;</p><p>&nbsp;</p></div></div>
+</body>
+</html>
